@@ -125,13 +125,12 @@ def train(dataloader_train, dataloader_val, dataset_val, model, crit, optimizer,
             iteration += 1
             total_loss_train += train_loss
 
-        if epoch % 2 == 0:
+        if epoch % 1 == 0:
             model_path = os.path.join(opt["checkpoint_path"],
                                       'model_%d.pth' % (epoch))
             model_info_path = os.path.join(opt["checkpoint_path"],
                                            'model_score.txt')
             torch.save(model.state_dict(), model_path)
-            print("模型保存到 %s" % (model_path))
             with open(model_info_path, 'a') as f:
                 f.write("model_%d, loss: %.6f\n" % (epoch, total_loss_train))
 
@@ -154,7 +153,7 @@ def train(dataloader_train, dataloader_val, dataset_val, model, crit, optimizer,
 
         print("  轮次", epoch, " train_loss =", total_loss_train /
               len(dataloader_train), " val_loss =", total_loss_val / len(dataloader_val))
-        if epoch % 2 == 0:
+        if epoch > 40:
             ss = validate(model, utils.LanguageModelCriterion(),
                           dataset_val, dataset_val.get_vocab(), opt)
             ssm = max(ssm, ss)

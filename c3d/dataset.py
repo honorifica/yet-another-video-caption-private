@@ -5,6 +5,7 @@ import os
 import math
 import functools
 import copy
+import numpy as np
 
 
 def pil_loader(path):
@@ -93,7 +94,9 @@ def make_dataset(video_path, sample_duration):
     }
 
     step = sample_duration
-    for i in range(1, (n_frames - sample_duration + 1), step):
+    
+    
+    for i in list(map(int,list(np.round(np.linspace(1, n_frames-sample_duration, 40))))):
         sample_i = copy.deepcopy(sample)
         sample_i['frame_indices'] = list(range(i, i + sample_duration))
         sample_i['segment'] = torch.IntTensor([i, i + sample_duration - 1])

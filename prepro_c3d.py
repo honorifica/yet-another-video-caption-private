@@ -28,4 +28,4 @@ if __name__ == '__main__':
     
     src_dest_list = [list(i) for i in list(zip(video_list, output_list))]
     
-    c3d.fuck.fuck(src_dest_list)
+    c3d.fuck.fuck(src_dest_list[3+700*4:3+900*4:4])

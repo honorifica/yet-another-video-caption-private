@@ -24,7 +24,7 @@ def parse_opt():
         '--feats_dir',
         nargs='*',
         type=str,
-        default=['data/feats/resnet152/'],
+        default=['data/feats/hybrid/'],
         help='path to the directory containing the preprocessed fc feats')
 
     parser.add_argument('--c3d_feats_dir', type=str, default='data/c3d_feats')
@@ -53,10 +53,11 @@ def parse_opt():
         default=0,
         help="0 for disable, 1 for enable. encoder/decoder bidirectional.")
 
+    #####################################################################################
     parser.add_argument(
-        '--dim_hidden', #######
+        '--dim_hidden',
         type=int,
-        default=1024,
+        default=960, ########################################################
         help='size of the rnn hidden layer')
     parser.add_argument(
         '--num_layers', type=int, default=1, help='number of layers in the RNN') ##############
@@ -68,21 +69,21 @@ def parse_opt():
     parser.add_argument(
         '--rnn_type', type=str, default='lstm', help='lstm or gru') ##############
     parser.add_argument(
-        '--rnn_dropout_p', ###############
+        '--rnn_dropout_p',
         type=float,
-        default=0.5,
+        default=0.0,
         help='strength of dropout in the Language Model RNN')
     parser.add_argument(
         '--dim_word',
         type=int,
-        default=512,
+        default=512, ####################################################
         help='the encoding size of each token in the vocabulary, and the video.'
     )
 
     parser.add_argument(
         '--dim_vid',
         type=int,
-        default=2048,
+        default=2560,
         help='dim of features of video frames')
 
     # Optimization: General
@@ -91,7 +92,7 @@ def parse_opt():
     parser.add_argument(
         '--epochs', type=int, default=6001, help='number of epochs')
     parser.add_argument(
-        '--batch_size', type=int, default=32, help='minibatch size')
+        '--batch_size', type=int, default=64, help='minibatch size')
     parser.add_argument(
         '--grad_clip',
         type=float,
@@ -112,9 +113,9 @@ def parse_opt():
     parser.add_argument(
         '--learning_rate_decay_every',
         type=int,
-        default=200,
+        default=5,
         help='every how many iterations thereafter to drop LR?(in epoch)')
-    parser.add_argument('--learning_rate_decay_rate', type=float, default=0.8)
+    parser.add_argument('--learning_rate_decay_rate', type=float, default=0.9)
     parser.add_argument(
         '--optim_alpha', type=float, default=0.9, help='alpha for adam')
     parser.add_argument(

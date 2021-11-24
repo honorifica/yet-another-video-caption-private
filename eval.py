@@ -119,7 +119,7 @@ if __name__ == '__main__':
                         help='Write image paths along with predictions into vis json? (1=yes,0=no)')
     parser.add_argument('--gpu', type=str, default='0',
                         help='gpu device number')
-    parser.add_argument('--batch_size', type=int, default=128,
+    parser.add_argument('--batch_size', type=int, default=64,
                         help='minibatch size')
     parser.add_argument('--sample_max', type=int, default=1,
                         help='0/1. whether sample max probs  to get next word in inference stage')
@@ -135,4 +135,10 @@ if __name__ == '__main__':
     os.environ['CUDA_VISIBLE_DEVICES'] = opt["gpu"]
     main(opt)
     os.system("mv result.json answer.json")
-    os.system("zip xxx.zip answer.json")
+    os.system("zip xB_v0.9_h{}_l{}_t{}_w{}_b{}_r{}__{}.zip answer.json".format(opt["dim_hidden"],
+                                                                      opt['num_layers'],
+                                                                      opt['rnn_type'],
+                                                                      opt["dim_word"],
+                                                                      opt["batch_size"],
+                                                                      opt["learning_rate"],
+                                                                      opt["saved_model"][-7:-4]))
