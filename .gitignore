@@ -1,0 +1,11 @@
+data/*
+video
+*.pyc
+tmp*
+dataset/*
+resnet152_video
+resnet152
+result.json
+results/**
+results/S2VTAttModel.json
+results/scores.txt
