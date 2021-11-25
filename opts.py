@@ -57,7 +57,7 @@ def parse_opt():
     parser.add_argument(
         '--dim_hidden',
         type=int,
-        default=960, ########################################################
+        default=1024, ########################################################
         help='size of the rnn hidden layer')
     parser.add_argument(
         '--num_layers', type=int, default=1, help='number of layers in the RNN') ##############
@@ -67,7 +67,7 @@ def parse_opt():
         default=0.3,
         help='strength of dropout in the Language Model RNN')
     parser.add_argument(
-        '--rnn_type', type=str, default='lstm', help='lstm or gru') ##############
+        '--rnn_type', type=str, default='gru', help='lstm or gru') ##############
     parser.add_argument(
         '--rnn_dropout_p',
         type=float,
@@ -108,12 +108,12 @@ def parse_opt():
     )
 
     parser.add_argument(
-        '--learning_rate', type=float, default=1e-4, help='learning rate')
+        '--learning_rate', type=float, default=8e-5, help='learning rate')
 
     parser.add_argument(
         '--learning_rate_decay_every',
         type=int,
-        default=5,
+        default=200,
         help='every how many iterations thereafter to drop LR?(in epoch)')
     parser.add_argument('--learning_rate_decay_rate', type=float, default=0.9)
     parser.add_argument(
